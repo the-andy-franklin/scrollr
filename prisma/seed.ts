@@ -11,16 +11,16 @@ async function main() {
     create: {
       email: "andy@email.com",
       name: "Test User",
-      password
-    }
-  })
+      password,
+    },
+  });
 }
 
 main()
   .then(() => {
-    prisma.$disconnect()
+    prisma.$disconnect();
   })
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
-  })
+    console.error(e);
+    process.exit(1);
+  });

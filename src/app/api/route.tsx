@@ -4,5 +4,5 @@ import { nextAuthOptions } from './auth/[...nextauth]/route';
 
 export async function GET(request: Request) {
   const session = await getServerSession(nextAuthOptions);
-  return NextResponse.json({ authenticated: !!session })
+  return NextResponse.json({ authenticated: !!session });
 }

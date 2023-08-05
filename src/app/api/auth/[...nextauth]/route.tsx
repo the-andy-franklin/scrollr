@@ -32,9 +32,10 @@ export const nextAuthOptions: NextAuthOptions = {
         if (!isPasswordValid) return null;
 
         return {
-          id: user.id,
+          id: user.id.toString(),
           email: user.email,
           name: user.name,
+          randomKey: 'randomKey',
         };
       },
     }),
@@ -42,14 +43,28 @@ export const nextAuthOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, token }) => {
       console.log('Session Callback', { session, token });
-      return session;
+
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          randomKey: token.randomKey,
+        },
+      };
     },
     jwt: ({ token, user }) => {
       console.log('JWT Callback', { token, user });
-      return {
-        ...token,
 
-      };
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          randomKey: (user as any).randomKey,
+        };
+      }
+
+      return token;
     },
   },
 };
