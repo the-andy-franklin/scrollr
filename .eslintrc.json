@@ -1,3 +1,58 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals", 
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "unused-imports",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    // syntax
+    "semi": "warn",
+    "eqeqeq": ["warn", "smart"],
+    "prefer-const": ["warn", { "destructuring": "all" }],
+    "comma-dangle": ["warn", "always-multiline"],
+    "space-before-blocks": "warn",
+
+    // spacing
+    "indent": ["warn", 2, { "SwitchCase": 1 }],
+    "@typescript-eslint/indent": ["warn", 2, { "SwitchCase": 1 }],
+    "no-trailing-spaces": "warn",
+
+    // object spacing
+    "curly": ["warn", "multi-line", "consistent"],
+    "object-curly-newline": ["warn", { "multiline": true, "consistent": true }],
+    "object-curly-spacing": ["warn", "always"],
+
+    // empty blocks
+    "no-empty": "warn",
+    "no-empty-function": ["warn", { "allow": ["constructors"] }],
+    "@typescript-eslint/no-empty-function": ["warn", { "allow": ["constructors"] }],
+
+    // unused vars and imports
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+
+    // typescript rules
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+
+    // empty line spacing
+    "padded-blocks": ["warn", "never"],
+    "no-multiple-empty-lines": ["warn", {
+      "max": 1,
+      "maxEOF": 0,
+      "maxBOF": 0
+    }],
+    "padding-line-between-statements": ["warn",
+      { "blankLine": "always", "prev": "*", "next": "block" },
+      { "blankLine": "always", "prev": "block", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "block-like" },
+      { "blankLine": "always", "prev": "block-like", "next": "*" }
+    ]
+  }
 }
