@@ -23,7 +23,6 @@
     "no-trailing-spaces": "warn",
 
     // object spacing
-    "curly": ["warn", "multi-line", "consistent"],
     "object-curly-newline": ["warn", { "multiline": true, "consistent": true }],
     "object-curly-spacing": ["warn", "always"],
 

@@ -14,13 +14,18 @@ export const nextAuthOptions: NextAuthOptions = {
         email: {
           label: "Email",
           type: "email",
-          placeholder: "example@example.com",
+          placeholder: "andy@email.com",
         },
-        password: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password", placeholder: "test" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          // return null;
+          // this is to make logging in easier for guests, but it's absolutely not secure
+          credentials = {
+            email: "andy@email.com",
+            password: "test",
+          };
         }
 
         const user = await prisma.user.findUnique({
@@ -35,32 +40,25 @@ export const nextAuthOptions: NextAuthOptions = {
           id: user.id.toString(),
           email: user.email,
           name: user.name,
-          randomKey: 'randomKey',
         };
       },
     }),
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log('Session Callback', { session, token });
-
       return {
         ...session,
         user: {
           ...session.user,
-          id: token.id,
-          randomKey: token.randomKey,
+          id: Number(token.id),
         },
       };
     },
     jwt: ({ token, user }) => {
-      console.log('JWT Callback', { token, user });
-
       if (user) {
         return {
           ...token,
-          id: user.id,
-          randomKey: (user as any).randomKey,
+          id: Number(user.id),
         };
       }
 
