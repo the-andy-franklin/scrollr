@@ -17,7 +17,6 @@
     "@prisma/client": "^5.1.1",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
-    "daisyui": "^3.5.1",
     "next": "13.4.12",
     "next-auth": "^4.22.3",
     "postcss": "8.4.27",
@@ -26,7 +25,6 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-modal": "^3.16.1",
-    "react-query": "^3.39.3",
     "tailwindcss": "3.3.3",
     "zod": "^3.21.4"
   },

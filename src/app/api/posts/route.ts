@@ -21,5 +21,18 @@ export async function POST(req: Request) {
 }
 
 export async function GET() {
-  return new NextResponse("hello world");
+  const session = await getServerSession(nextAuthOptions);
+
+  if (!session?.user?.id) return new NextResponse("failed");
+
+  const posts = await prisma.post.findMany({
+    where: {
+      authorId: session.user.id,
+    },
+    include: {
+      author: true,
+    },
+  });
+
+  return NextResponse.json(posts);
 }

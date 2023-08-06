@@ -17,7 +17,8 @@ const ContentCreationBar = () => {
 
   return (
     <div
-      className="flex justify-center items-center space-x-8 p-4 bg-white rounded shadow"
+      className="self-center flex justify-center items-center space-x-8 p-4 bg-white rounded shadow"
+      style={{ width: '32rem' }}
     >
       <button
         className="text-black flex flex-col items-center hover:underline hover:text-blue-500"

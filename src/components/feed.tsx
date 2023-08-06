@@ -1,24 +1,41 @@
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../app/api/auth/[...nextauth]/route";
-import { prisma } from "../dependencies/prisma";
+"use client";
+import { useEffect, useState } from "react";
+import { useRefresh } from "../app/context/refresh";
 import PostCard from "./post-card";
 
-const Feed = async () => {
-  const session = await getServerSession(nextAuthOptions);
+type Props = {
+  initialPosts: ({
+    id: number;
+    title: string;
+    content: string;
+    createdAt: Date;
+    updatedAt: Date;
+    authorId: number;
+    author: {
+      id: number;
+      email: string;
+      name: string | null;
+      password: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+  })[];
+};
 
-  if (!session?.user?.id) return "No user found";
+const Feed = ({ initialPosts }: Props) => {
+  const { refreshKey } = useRefresh();
+  const [posts, setPosts] = useState(initialPosts);
 
-  const posts = await prisma.post.findMany({
-    where: {
-      authorId: session.user.id,
-    },
-    include: {
-      author: true,
-    },
-  });
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("/api/posts");
+      const posts = await res.json();
+      setPosts(posts);
+    })();
+  }, [refreshKey]);
 
   return (
-    <div className="w-full h-full flex flex-col items-center">
+    <div className="w-full h-full flex flex-col items-center gap-4">
       {posts.map((post) => (
         <PostCard
           key={post.id}
