@@ -26,12 +26,12 @@ const App = async () => {
       <Header session={session} />
       <div className="flex h-0 flex-grow mx-4">
         <Navbar />
-        <div className="flex flex-col flex-grow gap-4">
+        <div className="flex flex-col flex-grow">
           <RefreshProvider>
             <div className="flex justify-end border-b border-white p-4">
               <NewPostButton />
             </div>
-            <div className="flex flex-col gap-4 p4 overflow-auto">
+            <div className="flex flex-col p-4 overflow-auto">
               <Feed initialPosts={posts} />
             </div>
           </RefreshProvider>

@@ -4,7 +4,7 @@ import { useRefresh } from "../app/context/refresh";
 import PostCard from "./post-card";
 
 type Props = {
-  initialPosts: ({
+  initialPosts: {
     id: number;
     title: string;
     content: string;
@@ -19,7 +19,7 @@ type Props = {
       createdAt: Date;
       updatedAt: Date;
     };
-  })[];
+  }[];
 };
 
 const Feed = ({ initialPosts }: Props) => {

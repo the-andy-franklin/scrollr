@@ -9,7 +9,7 @@ type Props = {
 const PostCard = ({ title, content, author }: Props) => {
   return (
     <div
-      className="rounded overflow-hidden shadow-lg bg-white text-gray-700 p-6"
+      className="bg-white text-gray-700 p-6 rounded shadow-lg flex-shrink-0 overflow-hidden"
       style={{ width: '32rem' }}
     >
       <div className="font-bold text-xl  mb-2">{title}</div>
