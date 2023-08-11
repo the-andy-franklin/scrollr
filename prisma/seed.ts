@@ -14,16 +14,6 @@ async function main() {
       password,
     },
   });
-
-  const post = await prisma.post.upsert({
-    where: { id: 1 },
-    update: {},
-    create: {
-      title: "Hello world",
-      content: "This is my first post",
-      authorId: user.id,
-    },
-  });
 }
 
 main()

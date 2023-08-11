@@ -3,6 +3,8 @@ import { FormEvent, useState } from 'react';
 import { useRefresh } from '../app/context/refresh';
 import Modal from 'react-modal';
 
+Modal.setAppElement('#app');
+
 const NewPostButton = () => {
   const { triggerRefresh } = useRefresh();
   const [isOpen, setIsOpen] = useState(false);

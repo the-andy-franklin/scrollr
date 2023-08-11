@@ -5,14 +5,14 @@ import PostCard from "./post-card";
 
 type Props = {
   initialPosts: {
-    id: number;
+    id: string;
     title: string;
     content: string;
     createdAt: Date;
     updatedAt: Date;
-    authorId: number;
+    authorId: string;
     author: {
-      id: number;
+      id: string;
       email: string;
       name: string | null;
       password: string;
@@ -29,7 +29,13 @@ const Feed = ({ initialPosts }: Props) => {
   useEffect(() => {
     (async () => {
       const res = await fetch("/api/posts");
-      const posts = await res.json();
+      const { posts, msg } = await res.json();
+
+      if (msg) {
+        console.error(msg);
+        return;
+      }
+
       setPosts(posts);
     })();
   }, [refreshKey]);

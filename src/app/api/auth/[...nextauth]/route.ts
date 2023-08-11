@@ -37,7 +37,7 @@ export const nextAuthOptions: NextAuthOptions = {
         if (!isPasswordValid) return null;
 
         return {
-          id: user.id.toString(),
+          id: user.id,
           email: user.email,
           name: user.name,
         };
@@ -50,7 +50,7 @@ export const nextAuthOptions: NextAuthOptions = {
         ...session,
         user: {
           ...session.user,
-          id: Number(token.id),
+          id: token.id as string,
         },
       };
     },
@@ -58,7 +58,7 @@ export const nextAuthOptions: NextAuthOptions = {
       if (user) {
         return {
           ...token,
-          id: Number(user.id),
+          id: user.id,
         };
       }
 

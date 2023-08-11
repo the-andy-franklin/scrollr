@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   const { title, content } = await req.json();
   const session = await getServerSession(nextAuthOptions);
 
-  if (!session?.user?.id) return new NextResponse("failed");
+  if (!session?.user?.id) return NextResponse.json({ msg: "failed" });
 
   const result = await prisma.post.create({
     data: {
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 export async function GET() {
   const session = await getServerSession(nextAuthOptions);
 
-  if (!session?.user?.id) return new NextResponse("failed");
+  if (!session?.user?.id) return NextResponse.json({ msg: "failed" });
 
   const posts = await prisma.post.findMany({
     where: {
@@ -34,5 +34,5 @@ export async function GET() {
     },
   });
 
-  return NextResponse.json(posts);
+  return NextResponse.json({ posts });
 }
