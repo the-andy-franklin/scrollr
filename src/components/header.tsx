@@ -16,12 +16,14 @@ export default function Header({ session }: { session: Session | null }) {
             Sign Out
           </button>
           :
-          <button
-            onClick={() => signIn()}
-            className="bg-white text-blue-500 px-4 py-2 rounded active:bg-gray-200"
-          >
+          <>
+            <button
+              onClick={() => signIn()}
+              className="bg-white text-blue-500 px-4 py-2 rounded active:bg-gray-200"
+            >
             Login
-          </button>
+            </button>
+          </>
         }
       </div>
     </header>

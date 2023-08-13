@@ -28,9 +28,11 @@ const App = async () => {
         <Navbar />
         <div className="flex flex-col flex-grow">
           <RefreshProvider>
-            <div className="flex justify-end border-b border-white p-4">
-              <NewPostButton />
-            </div>
+            { session?.user && (
+              <div className="flex justify-end border-b border-white p-4">
+                <NewPostButton />
+              </div>
+            )}
             <div className="flex flex-col p-4 overflow-auto">
               <Feed initialPosts={posts} />
             </div>
