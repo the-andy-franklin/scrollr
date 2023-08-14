@@ -14,5 +14,5 @@ export async function POST(req: Request) {
     },
   });
 
-  return new NextResponse(JSON.stringify(result));
+  return NextResponse.json(result);
 }
