@@ -2,8 +2,13 @@
 import React from "react";
 import { signIn, signOut } from "next-auth/react";
 import { type Session } from "next-auth";
+import Link from "next/link";
 
 export default function Header({ session }: { session: Session | null }) {
+  const signUp = () => {
+
+  };
+
   return (
     <header className="p-4 flex justify-between items-center border-b border-black">
       <h1 className="text-2xl font-bold">Scrollr</h1>
@@ -21,8 +26,15 @@ export default function Header({ session }: { session: Session | null }) {
               onClick={() => signIn()}
               className="bg-white text-blue-500 px-4 py-2 rounded active:bg-gray-200"
             >
-            Login
+              Login
             </button>
+            <Link
+              href="/signup"
+              onClick={() => signUp()}
+              className="bg-white text-blue-500 px-4 py-2 rounded active:bg-gray-200"
+            >
+              Sign Up
+            </Link>
           </>
         }
       </div>
