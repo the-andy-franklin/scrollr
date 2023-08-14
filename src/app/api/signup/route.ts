@@ -5,7 +5,7 @@ import { genSalt, hash } from 'bcrypt';
 export async function POST(req: Request) {
   const { email, password } = await req.json();
 
-  const hashedPassword = await hash(password, await genSalt());
+  const hashedPassword = await hash(password, await genSalt(12));
 
   const result = await prisma.user.create({
     data: {
