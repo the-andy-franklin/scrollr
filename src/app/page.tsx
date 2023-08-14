@@ -28,7 +28,7 @@ const App = async () => {
         <Navbar />
         <div className="flex flex-col flex-grow">
           <RefreshProvider>
-            { session?.user && (
+            {session?.user && (
               <div className="flex justify-end border-b border-white p-4">
                 <NewPostButton />
               </div>
